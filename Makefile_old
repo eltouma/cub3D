@@ -1,0 +1,81 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile_old                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: caguillo <caguillo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/25 23:32:02 by caguillo          #+#    #+#              #
+#    Updated: 2024/09/12 15:02:28 by eltouma          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		=	cub3D
+#NAME_BONUS	=	cub3D_bonus
+
+SRCS		=	./srcs/main.c \
+				./srcs/parsing_scene.c \
+				./srcs/parsing_data.c \
+				./srcs/parsing_utils1.c \
+				./srcs/parsing_utils2.c \
+				./srcs/parsing_path.c \
+				./srcs/parsing_map.c \
+				./srcs/parsing_map_utils.c \
+				./srcs/split.c \
+				./srcs/tools1.c \
+				./srcs/tools2.c \
+				./srcs/free.c \
+				./srcs/get_next_line.c \
+				./srcs/get_next_line_utils.c \
+				./srcs/errors.c \
+				./srcs/mlx.c \
+				./srcs/load.c \
+				./srcs/events.c \
+				./srcs/draw_utils.c \
+				./srcs/ray_inter.c \
+				./srcs/ray_cast.c \
+				./srcs/tex_test.c \
+				./srcs/ray_test2.c
+
+#SRCS_BONUS	=	./srcs/main.c \				
+
+MLX_DIR		=	./minilibx-linux
+MLX			= 	$(MLX_DIR)/libmlx.a
+MLXLIB		= 	$(MLX) -lXext -lX11 -lm -lrt
+
+INCS_SRCS	=	./includes/cub3d.h
+INCS_DIR	=	-Iincludes -Iminilibx-linux
+
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror -g3
+
+OBJS		=	$(SRCS:.c=.o)
+OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+
+%.o:%.c		$(INCS_SRCS)
+			$(CC) $(CFLAGS) $(INCS_DIR) -c $< -o $(<:.c=.o)
+
+$(NAME):	$(OBJS) 
+			make -C $(MLX_DIR)
+			$(CC) $(CFLAGS) $(OBJS) $(MLXLIB) -o $(NAME)
+			
+all:		$(NAME)
+
+re: 		fclean all
+
+$(NAME_BONUS):	$(OBJS_BONUS) 
+			make -C $(MLX_DIR)
+			$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLXLIB) -o $(NAME_BONUS)
+
+bonus:		$(NAME_BONUS)
+
+rebonus: 	fclean bonus
+			
+clean:
+			make -C $(MLX_DIR) clean
+			rm -f $(OBJS) $(OBJS_BONUS)
+
+fclean: 	clean
+			rm -f $(NAME) $(NAME_BONUS)
+			
+.PHONY: 	all clean fclean re bonus rebonus

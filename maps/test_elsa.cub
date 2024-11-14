@@ -1,0 +1,13 @@
+NO ./images/test/petite_fractal.xpm
+SO ./images/test/so.xpm
+WE ./images/test/we.xpm
+EA ./images/test/ea.xpm
+
+F 220,100,0
+C 220,230,0
+
+111111
+1000N1
+101001
+100001
+111111

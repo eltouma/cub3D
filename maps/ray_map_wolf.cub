@@ -1,0 +1,18 @@
+NO ./images/wolf/blue_stone.xpm
+SO ./images/wolf/red_brick.xpm
+WE ./images/wolf/wood.xpm
+EA ./images/wolf/grey_stone.xpm
+
+F 0,255,0
+C 255,0,0
+
+1111111111
+1000000001
+1010001001
+1000000101
+1000000101
+1000001001
+1000000001
+1010N00001
+1000000001
+1111111111
